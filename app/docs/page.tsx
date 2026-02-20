@@ -10,20 +10,23 @@ export default async function DocsPage() {
   const docs = await getAllDocs();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 md:px-6">
-      <h1 className="text-3xl font-bold mb-8">Documentation</h1>
+    <>
+      <h1 className="text-3xl font-bold mb-2">Documentation</h1>
+      <p className="text-muted-foreground mb-8">
+        Everything you need to get started with the project.
+      </p>
 
       {docs.length === 0 ? (
         <p className="text-muted-foreground">
-          No documentation found. Add MDX files to <code>content/docs/</code>.
+          No documentation found. Add MDX files to <code className="text-xs bg-muted px-1.5 py-0.5 rounded">content/docs/</code>.
         </p>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           {docs.map((doc) => (
             <Link
               key={doc.slug}
               href={`/docs/${doc.slug}`}
-              className="block p-4 rounded-lg border border-border hover:bg-accent transition-colors"
+              className="block rounded-lg border border-border p-4 hover:bg-accent transition-colors"
             >
               <h2 className="font-semibold mb-1">{doc.title}</h2>
               {doc.description && (
@@ -33,6 +36,6 @@ export default async function DocsPage() {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }

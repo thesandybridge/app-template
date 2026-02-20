@@ -36,10 +36,10 @@ export default async function DocPage({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 md:px-6">
+    <>
       <Link
         href="/docs"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 lg:hidden"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to docs
@@ -52,6 +52,6 @@ export default async function DocPage({ params }: Props) {
         )}
         <MDXContent source={doc.content} />
       </article>
-    </div>
+    </>
   );
 }
