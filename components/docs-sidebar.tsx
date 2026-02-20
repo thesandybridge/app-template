@@ -15,7 +15,7 @@ export function DocsSidebar({ docs }: { docs: DocLink[] }) {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-56 shrink-0 border-r border-border/50 p-6 lg:block sticky top-14 h-[calc(100dvh-3.5rem)] overflow-y-auto">
+    <aside className="hidden w-56 shrink-0 border-r border-border/50 p-6 lg:block sticky top-14 self-start max-h-[calc(100dvh-3.5rem)] overflow-y-auto">
       <nav className="space-y-1">
         <Link
           href="/docs"
