@@ -33,9 +33,9 @@
     --radius: 0.75rem;
     --background: var(--primary-bg);
     --foreground: var(--text-bright);
-    --card: var(--secondary-bg);
+    --card: var(--primary-bg);
     --card-foreground: var(--text-bright);
-    --popover: var(--secondary-bg);
+    --popover: var(--primary-bg);
     --popover-foreground: var(--text-bright);
     --primary: var(--secondary-fg);
     --primary-foreground: var(--primary-bg);
@@ -53,9 +53,9 @@
 [data-mode="dark"] {
     --background: var(--primary-bg);
     --foreground: var(--text-bright);
-    --card: var(--secondary-bg);
+    --card: var(--primary-bg);
     --card-foreground: var(--text-bright);
-    --popover: var(--secondary-bg);
+    --popover: var(--primary-bg);
     --popover-foreground: var(--text-bright);
     --primary: var(--secondary-fg);
     --primary-foreground: var(--primary-bg);
