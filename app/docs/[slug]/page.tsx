@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getDocBySlug, getDocSlugs } from "@/lib/docs";
 import { MDXContent } from "@thesandybridge/ui/mdx";
-import { CopyablePre } from "@/components/copyable-pre";
+import { docsMDXComponents } from "@/lib/mdx-components";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -46,13 +46,15 @@ export default async function DocPage({ params }: Props) {
         Back to docs
       </Link>
 
-      <article className="prose prose-neutral dark:prose-invert max-w-none">
-        <h1>{doc.title}</h1>
-        {doc.description && (
-          <p className="lead text-muted-foreground">{doc.description}</p>
-        )}
-        <MDXContent source={doc.content} components={{ pre: CopyablePre }} />
-      </article>
+      <div className="space-y-12">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">{doc.title}</h1>
+          {doc.description && (
+            <p className="text-muted-foreground">{doc.description}</p>
+          )}
+        </div>
+        <MDXContent source={doc.content} components={docsMDXComponents} />
+      </div>
     </>
   );
 }
