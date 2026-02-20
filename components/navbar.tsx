@@ -51,7 +51,7 @@ export function Navbar() {
   const { setOpen: setCommandPaletteOpen } = useCommandPalette();
 
   return (
-    <nav className="border-border/50 border-b">
+    <nav className="border-border/50 border-b sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
         <Link href="/" className="text-primary flex items-center gap-2 text-sm font-medium">
           <Logo size={20} />
