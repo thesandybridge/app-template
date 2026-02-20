@@ -2,12 +2,36 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 
+export interface Heading {
+  id: string;
+  title: string;
+}
+
 export interface Doc {
   slug: string;
   title: string;
   description?: string;
   order?: number;
   content: string;
+  headings: Heading[];
+}
+
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+}
+
+function extractHeadings(content: string): Heading[] {
+  const regex = /^## (.+)$/gm;
+  const headings: Heading[] = [];
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const title = match[1].trim();
+    headings.push({ id: slugify(title), title });
+  }
+  return headings;
 }
 
 const DOCS_DIR = path.join(process.cwd(), "content/docs");
@@ -44,6 +68,7 @@ export async function getDocBySlug(slug: string): Promise<Doc | null> {
       description: data.description,
       order: data.order,
       content,
+      headings: extractHeadings(content),
     };
   } catch {
     return null;
