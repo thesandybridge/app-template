@@ -1,16 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { codeToHtml, createCssVariablesTheme } from 'shiki';
+
+const theme = createCssVariablesTheme({
+  name: 'css-variables',
+  variablePrefix: '--shiki-',
+  variableDefaults: {},
+  fontStyle: true,
+});
 import { ICONS, getFaviconFileCode, getLogoFileCode, type IconPreset } from '@/lib/icons';
 import { IconPreview } from '@/components/icon-preview';
 import { Button } from '@/components/ui/button';
+
+function useHighlightedCode(code: string, lang: string) {
+  const [html, setHtml] = useState('');
+  const pending = useRef(0);
+
+  useEffect(() => {
+    const id = ++pending.current;
+    codeToHtml(code, { lang, theme }).then((result) => {
+      if (id === pending.current) setHtml(result);
+    });
+  }, [code, lang]);
+
+  return html;
+}
 
 function CodePanel({ icon }: { icon: IconPreset }) {
   const [tab, setTab] = useState<'favicon' | 'logo'>('favicon');
   const [copied, setCopied] = useState(false);
 
   const code = tab === 'favicon' ? getFaviconFileCode(icon) : getLogoFileCode(icon);
+  const html = useHighlightedCode(code, 'tsx');
 
   function handleCopy() {
     navigator.clipboard.writeText(code);
@@ -48,9 +71,16 @@ function CodePanel({ icon }: { icon: IconPreset }) {
           {copied ? 'Copied' : 'Copy'}
         </Button>
       </div>
-      <pre className="overflow-auto p-4 text-sm leading-relaxed">
-        <code>{code}</code>
-      </pre>
+      {html ? (
+        <div
+          className="overflow-auto p-4 text-sm leading-relaxed [&_pre]:!bg-transparent"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      ) : (
+        <pre className="overflow-auto p-4 text-sm leading-relaxed">
+          <code>{code}</code>
+        </pre>
+      )}
     </div>
   );
 }

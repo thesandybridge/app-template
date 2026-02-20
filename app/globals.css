@@ -30,6 +30,21 @@
     --color-ring: var(--ring);
 }
 
+/* Shiki syntax highlighting — CSS variable theme */
+:root {
+  --shiki-color-text: var(--foreground);
+  --shiki-color-background: var(--muted);
+  --shiki-token-keyword: oklch(0.78 0.155 80);
+  --shiki-token-function: oklch(0.7 0.15 200);
+  --shiki-token-string: oklch(0.7 0.15 140);
+  --shiki-token-string-expression: oklch(0.7 0.15 140);
+  --shiki-token-constant: oklch(0.75 0.12 50);
+  --shiki-token-parameter: oklch(0.7 0.12 220);
+  --shiki-token-comment: oklch(0.55 0.02 70);
+  --shiki-token-punctuation: oklch(0.6 0.02 70);
+  --shiki-token-link: oklch(0.7 0.15 200);
+}
+
 @layer base {
   html {
     @apply overflow-x-hidden;
