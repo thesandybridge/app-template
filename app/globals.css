@@ -45,6 +45,30 @@
   --shiki-token-link: oklch(0.7 0.15 200);
 }
 
+/* Shiki code blocks */
+pre.shiki {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+pre.shiki code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* Inline code (not inside pre) */
+:not(pre) > code {
+  font-size: 0.75rem;
+  background: var(--muted);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
 @layer base {
   html {
     @apply overflow-x-hidden;
