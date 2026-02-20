@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from "next/font/google";
 import { generateThemeScript } from "@thesandybridge/themes";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/query-provider";
+import { SessionProvider } from "@/components/session-provider";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/toaster";
 import { Footer } from "@/components/footer";
@@ -31,16 +32,18 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: generateThemeScript() }} />
       </head>
       <body className={`${inter.className} ${geistMono.variable} flex min-h-dvh flex-col antialiased`}>
-        <QueryProvider>
-          <ThemeProvider>
-            <Navbar />
-            <Toaster />
-            <main className="flex flex-1 flex-col">
-              {children}
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </QueryProvider>
+        <SessionProvider>
+          <QueryProvider>
+            <ThemeProvider>
+              <Navbar />
+              <Toaster />
+              <main className="flex flex-1 flex-col">
+                {children}
+              </main>
+              <Footer />
+            </ThemeProvider>
+          </QueryProvider>
+        </SessionProvider>
       </body>
     </html>
   );
