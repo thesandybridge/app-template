@@ -1,0 +1,50 @@
+{
+  "name": "sandybridge-app-template",
+  "version": "1.0.0",
+  "variables": {
+    "project_name": {
+      "description": "Name of the project",
+      "required": true
+    }
+  },
+  "features": {
+    "docs": {
+      "description": "Include MDX documentation system",
+      "default": false,
+      "files": [
+        "app/docs/**/*",
+        "content/docs/**/*",
+        "lib/docs.ts"
+      ]
+    },
+    "auth": {
+      "description": "Include next-auth authentication",
+      "default": true,
+      "files": [
+        "auth.ts",
+        "auth.config.ts",
+        "app/api/auth/**/*",
+        "components/session-provider.tsx",
+        "types/next-auth.d.ts"
+      ],
+      "dependencies": {
+        "next-auth": "^5.0.0-beta.25",
+        "@auth/core": "^0.37.4",
+        "jose": "^6.0.11"
+      }
+    },
+    "db": {
+      "description": "Include PostgreSQL database setup",
+      "default": true,
+      "files": [
+        "lib/db.ts"
+      ],
+      "dependencies": {
+        "pg": "^8.14.1"
+      },
+      "devDependencies": {
+        "@types/pg": "^8.11.11"
+      }
+    }
+  }
+}

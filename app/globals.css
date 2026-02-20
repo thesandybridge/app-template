@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@thesandybridge/themes/css";
+
+@custom-variant dark (&:is([data-mode="dark"] *));
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+}
+
+:root, [data-mode="light"] {
+    --radius: 0.75rem;
+    --background: var(--primary-bg);
+    --foreground: var(--text-bright);
+    --card: var(--secondary-bg);
+    --card-foreground: var(--text-bright);
+    --popover: var(--secondary-bg);
+    --popover-foreground: var(--text-bright);
+    --primary: var(--secondary-fg);
+    --primary-foreground: var(--primary-bg);
+    --secondary: var(--secondary-bg);
+    --secondary-foreground: var(--text-bright);
+    --muted: var(--secondary-bg);
+    --muted-foreground: var(--primary-fg);
+    --accent: var(--secondary-bg);
+    --accent-foreground: var(--text-bright);
+    --destructive: var(--error);
+    --input: var(--border);
+    --ring: var(--secondary-fg);
+}
+
+[data-mode="dark"] {
+    --background: var(--primary-bg);
+    --foreground: var(--text-bright);
+    --card: var(--secondary-bg);
+    --card-foreground: var(--text-bright);
+    --popover: var(--secondary-bg);
+    --popover-foreground: var(--text-bright);
+    --primary: var(--secondary-fg);
+    --primary-foreground: var(--primary-bg);
+    --secondary: var(--secondary-bg);
+    --secondary-foreground: var(--text-bright);
+    --muted: var(--secondary-bg);
+    --muted-foreground: var(--primary-fg);
+    --accent: var(--secondary-bg);
+    --accent-foreground: var(--text-bright);
+    --destructive: var(--error);
+    --input: var(--border);
+    --ring: var(--secondary-fg);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
