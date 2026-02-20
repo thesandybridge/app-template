@@ -4,6 +4,7 @@ import { generateThemeScript } from "@thesandybridge/themes";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/query-provider";
 import { SessionProvider } from "@/components/session-provider";
+import { CommandPaletteProvider } from "@/components/command-palette";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/toaster";
 import { Footer } from "@/components/footer";
@@ -35,12 +36,14 @@ export default function RootLayout({
         <SessionProvider>
           <QueryProvider>
             <ThemeProvider>
-              <Navbar />
-              <Toaster />
-              <main className="flex flex-1 flex-col">
-                {children}
-              </main>
-              <Footer />
+              <CommandPaletteProvider>
+                <Navbar />
+                <Toaster />
+                <main className="flex flex-1 flex-col">
+                  {children}
+                </main>
+                <Footer />
+              </CommandPaletteProvider>
             </ThemeProvider>
           </QueryProvider>
         </SessionProvider>
