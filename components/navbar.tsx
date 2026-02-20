@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MenuIcon, FileText, Home, Search, Github } from "lucide-react";
+import { MenuIcon, FileText, Home, Search, Github, Sparkles } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { ThemePicker } from "@/components/theme-picker";
 import { useCommandPalette } from "@/components/command-palette";
@@ -33,6 +33,14 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
       >
         <FileText className="h-4 w-4" />
         Docs
+      </Link>
+      <Link
+        href="/icons"
+        onClick={onClick}
+        className="hover:text-foreground flex items-center gap-3 transition-colors"
+      >
+        <Sparkles className="h-4 w-4" />
+        Icons
       </Link>
     </>
   );

@@ -13,7 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Home, Moon, Sun, FileText, Palette, Type } from "lucide-react";
+import { Home, Moon, Sun, FileText, Palette, Type, Sparkles } from "lucide-react";
 
 interface CommandPaletteContextValue {
   open: boolean;
@@ -67,6 +67,10 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
             <CommandItem onSelect={() => runCommand(() => router.push("/docs"))}>
               <FileText className="mr-2 h-4 w-4" />
               Docs
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/icons"))}>
+              <Sparkles className="mr-2 h-4 w-4" />
+              Icons
             </CommandItem>
           </CommandGroup>
 
