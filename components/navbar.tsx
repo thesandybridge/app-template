@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MenuIcon, FileText, Home, Search, Github } from "lucide-react";
+import { Logo } from "@/components/logo";
 import { ThemePicker } from "@/components/theme-picker";
 import { useCommandPalette } from "@/components/command-palette";
 import {
@@ -44,7 +45,8 @@ export function Navbar() {
   return (
     <nav className="border-border/50 border-b">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
-        <Link href="/" className="font-[family-name:var(--font-geist-mono)] text-primary text-sm font-medium">
+        <Link href="/" className="text-primary flex items-center gap-2 text-sm font-medium">
+          <Logo size={20} />
           {"{{project_name}}"}
         </Link>
 

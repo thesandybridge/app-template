@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/components/theme-provider";
+import { useFont, FONTS } from "@/components/font-provider";
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,7 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Home, Moon, Sun, FileText } from "lucide-react";
+import { Home, Moon, Sun, FileText, Palette, Type } from "lucide-react";
 
 interface CommandPaletteContextValue {
   open: boolean;
@@ -31,7 +32,8 @@ export function useCommandPalette() {
 export function CommandPaletteProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const { setMode } = useTheme();
+  const { setMode, setTheme, themes } = useTheme();
+  const { setFont } = useFont();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -70,7 +72,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
 
           <CommandSeparator />
 
-          <CommandGroup heading="Theme">
+          <CommandGroup heading="Mode">
             <CommandItem onSelect={() => runCommand(() => setMode("light"))}>
               <Sun className="mr-2 h-4 w-4" />
               Light Mode
@@ -79,6 +81,28 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
               <Moon className="mr-2 h-4 w-4" />
               Dark Mode
             </CommandItem>
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          <CommandGroup heading="Themes">
+            {themes.map((t) => (
+              <CommandItem key={t.id} onSelect={() => runCommand(() => setTheme(t.id))}>
+                <Palette className="mr-2 h-4 w-4" />
+                {t.name}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          <CommandGroup heading="Fonts">
+            {FONTS.map((f) => (
+              <CommandItem key={f.id} onSelect={() => runCommand(() => setFont(f.id))}>
+                <Type className="mr-2 h-4 w-4" />
+                {f.name}
+              </CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>

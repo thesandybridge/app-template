@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Github } from "lucide-react";
+import { Logo } from "@/components/logo";
 
 export function Footer() {
   return (
@@ -8,10 +9,9 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="font-[family-name:var(--font-geist-mono)] text-primary text-sm font-medium">
-                {{project_name}}
-              </span>
+            <Link href="/" className="text-primary flex items-center gap-2 text-sm font-medium">
+              <Logo size={20} />
+              {"{{project_name}}"}
             </Link>
             <p className="text-muted-foreground mt-3 max-w-xs text-sm">
               A sandybridge.io project.

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Inter, Geist, JetBrains_Mono } from "next/font/google";
 import { generateThemeScript } from "@thesandybridge/themes";
 import { ThemeProvider } from "@/components/theme-provider";
-import { DynamicFavicon } from "@thesandybridge/ui/components";
+import { FontProvider } from "@/components/font-provider";
+import { Favicon } from "@/components/favicon";
 import { QueryProvider } from "@/components/query-provider";
 import { SessionProvider } from "@/components/session-provider";
 import { CommandPaletteProvider } from "@/components/command-palette";
@@ -11,8 +12,9 @@ import { Toaster } from "@/components/toaster";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
   title: {
@@ -33,19 +35,21 @@ export default function RootLayout({
         <meta name="darkreader-lock" />
         <script dangerouslySetInnerHTML={{ __html: generateThemeScript() }} />
       </head>
-      <body className={`${inter.className} ${geistMono.variable} flex min-h-dvh flex-col antialiased`}>
+      <body className={`${inter.variable} ${geistSans.variable} ${jetbrainsMono.variable} flex min-h-dvh flex-col antialiased`}>
         <SessionProvider>
           <QueryProvider>
             <ThemeProvider>
-              <DynamicFavicon />
-              <CommandPaletteProvider>
-                <Navbar />
-                <Toaster />
-                <main className="flex flex-1 flex-col">
-                  {children}
-                </main>
-                <Footer />
-              </CommandPaletteProvider>
+              <FontProvider>
+                <Favicon />
+                <CommandPaletteProvider>
+                  <Navbar />
+                  <Toaster />
+                  <main className="flex flex-1 flex-col">
+                    {children}
+                  </main>
+                  <Footer />
+                </CommandPaletteProvider>
+              </FontProvider>
             </ThemeProvider>
           </QueryProvider>
         </SessionProvider>

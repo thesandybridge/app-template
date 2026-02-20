@@ -78,7 +78,7 @@ export function ThemePicker() {
             onClick={() => handleSelectTheme(t.id)}
             onMouseEnter={() => handlePreviewEnter(t.id)}
             onMouseLeave={handlePreviewLeave}
-            className="gap-2 hover:!bg-[rgba(128,128,128,0.2)]"
+            className="gap-2"
           >
             {t.name}
             {theme === t.id && <Check className="ml-auto h-4 w-4" />}
